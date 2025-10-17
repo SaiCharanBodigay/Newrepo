@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto Tracker - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/manifestos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-university"></i>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link active">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Manifesto Header -->
+    <section class="manifesto-header">
+        <div class="container">
+            <h1>AI-Powered Manifesto Tracker</h1>
+            <p>Track political promises and their fulfillment with intelligent analysis</p>
+            
+            <!-- Search and Filters -->
+            <div class="manifesto-controls">
+                <div class="search-container">
+                    <input type="text" id="manifestoSearch" placeholder="Search manifestos, promises, or parties...">
+                    <button id="searchManifesto">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-controls">
+                    <select id="partyFilter" class="filter-select">
+                        <option value="all">All Parties</option>
+                        <option value="bjp">BJP</option>
+                        <option value="congress">Congress</option>
+                        <option value="aap">AAP</option>
+                        <option value="tmc">TMC</option>
+                        <option value="dmk">DMK</option>
+                        <option value="other">Other Parties</option>
+                    </select>
+                    
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="fulfilled">Fulfilled</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="delayed">Delayed</option>
+                        <option value="broken">Broken</option>
+                    </select>
+                    
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="economy">Economy</option>
+                        <option value="education">Education</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="environment">Environment</option>
+                        <option value="agriculture">Agriculture</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Analysis Summary -->
+    <section class="ai-summary">
+        <div class="container">
+            <div class="summary-header">
+                <h2><i class="fas fa-robot"></i> AI Analysis Summary</h2>
+                <p>Intelligent insights from manifesto analysis across parties and time periods</p>
+            </div>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Overall Fulfillment Rate</h3>
+                        <div class="progress-ring">
+                            <div class="progress-circle" data-percentage="68">
+                                <span class="percentage">68%</span>
+                            </div>
+                        </div>
+                        <p>Across all tracked promises</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Promises Tracked</h3>
+                        <div class="stat-number">1,247</div>
+                        <p>From 2019-2024 manifestos</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Avg. Implementation Time</h3>
+                        <div class="stat-number">18</div>
+                        <p>Months for fulfilled promises</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Top Performing Category</h3>
+                        <div class="stat-label">Infrastructure</div>
+                        <p>82% fulfillment rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Party Performance Comparison -->
+    <section class="party-comparison">
+        <div class="container">
+            <h2>Party Performance Comparison</h2>
+            <div class="comparison-container">
+                <div class="party-cards">
+                    <div class="party-card" data-party="bjp">
+                        <div class="party-header">
+                            <img src="https://via.placeholder.com/60x60/FF9933/FFFFFF?text=BJP" alt="BJP" class="party-logo">
+                            <div class="party-info">
+                                <h3>Bharatiya Janata Party</h3>
+                                <p>Ruling Party</p>
+                            </div>
+                        </div>
+                        <div class="party-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">72%</span>
+                                <span class="stat-label">Fulfillment Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">456</span>
+                                <span class="stat-label">Promises Made</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">328</span>
+                                <span class="stat-label">Promises Kept</span>
+                            </div>
+                        </div>
+                        <div class="party-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%; background: #FF9933;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="party-card" data-party="congress">
+                        <div class="party-header">
+                            <img src="https://via.placeholder.com/60x60/138808/FFFFFF?text=INC" alt="Congress" class="party-logo">
+                            <div class="party-info">
+                                <h3>Indian National Congress</h3>
+                                <p>Opposition Party</p>
+                            </div>
+                        </div>
+                        <div class="party-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">65%</span>
+                                <span class="stat-label">Fulfillment Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">392</span>
+                                <span class="stat-label">Promises Made</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">255</span>
+                                <span class="stat-label">Promises Kept</span>
+                            </div>
+                        </div>
+                        <div class="party-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%; background: #138808;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="party-card" data-party="aap">
+                        <div class="party-header">
+                            <img src="https://via.placeholder.com/60x60/0080FF/FFFFFF?text=AAP" alt="AAP" class="party-logo">
+                            <div class="party-info">
+                                <h3>Aam Aadmi Party</h3>
+                                <p>Regional Party</p>
+                            </div>
+                        </div>
+                        <div class="party-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">78%</span>
+                                <span class="stat-label">Fulfillment Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">156</span>
+                                <span class="stat-label">Promises Made</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">122</span>
+                                <span class="stat-label">Promises Kept</span>
+                            </div>
+                        </div>
+                        <div class="party-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%; background: #0080FF;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-chart">
+                    <canvas id="partyComparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promise Categories -->
+    <section class="promise-categories">
+        <div class="container">
+            <h2>Promise Categories Analysis</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="economy">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Economy</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">74%</span>
+                            <span class="total-promises">245 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 74%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> Job creation, GDP growth, Startup India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="education">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Education</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">68%</span>
+                            <span class="total-promises">178 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> Digital classrooms, Teacher training, NEP implementation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="healthcare">
+                    <div class="category-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Healthcare</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">71%</span>
+                            <span class="total-promises">189 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 71%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> Ayushman Bharat, AIIMS expansion, Vaccination drives</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="infrastructure">
+                    <div class="category-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Infrastructure</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">82%</span>
+                            <span class="total-promises">203 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 82%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> Highway construction, Smart cities, Metro expansion</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="environment">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Environment</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">59%</span>
+                            <span class="total-promises">134 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 59%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> Solar energy, Pollution control, Forest conservation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="agriculture">
+                    <div class="category-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Agriculture</h3>
+                        <div class="category-stats">
+                            <span class="fulfillment-rate">66%</span>
+                            <span class="total-promises">156 promises</span>
+                        </div>
+                        <div class="category-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 66%;"></div>
+                            </div>
+                        </div>
+                        <div class="key-promises">
+                            <p><strong>Key Promises:</strong> MSP guarantee, Farm loans, Irrigation projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Promise List -->
+    <section class="promise-list">
+        <div class="container">
+            <div class="list-header">
+                <h2>Detailed Promise Tracker</h2>
+                <div class="list-controls">
+                    <button id="exportData" class="export-btn">
+                        <i class="fas fa-download"></i> Export Data
+                    </button>
+                </div>
+            </div>
+            
+            <div class="promise-table-container">
+                <table class="promise-table">
+                    <thead>
+                        <tr>
+                            <th>Promise</th>
+                            <th>Party</th>
+                            <th>Category</th>
+                            <th>Timeline</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                            <th>AI Score</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="promiseTableBody">
+                        <!-- Dynamic content will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <button id="prevPage" class="page-btn">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span id="pageInfo">Page 1 of 10</span>
+                <button id="nextPage" class="page-btn">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promise Detail Modal -->
+    <div id="promiseModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Promise Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="promiseModalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JanDarpan</h3>
+                    <p>Holding democracy to its promises through transparency and accountability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Manifesto Tracker</h4>
+                    <ul>
+                        <li><a href="#ai-analysis">AI Analysis</a></li>
+                        <li><a href="#party-comparison">Party Comparison</a></li>
+                        <li><a href="#promise-categories">Categories</a></li>
+                        <li><a href="#detailed-tracker">Detailed Tracker</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Methodology</a></li>
+                        <li><a href="#">Data Sources</a></li>
+                        <li><a href="#">API Access</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JanDarpan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/manifestos.js"></script>
+</body>
+</html>

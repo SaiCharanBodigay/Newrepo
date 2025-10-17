@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JanDarpan - Login Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h2>जनदर्पण</h2>
+        <span>JanDarpan</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+        <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+        <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+        <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Portal Section -->
+  <section class="login-portal">
+    <div class="login-container">
+      <div class="portal-header">
+        <h1>Welcome to JanDarpan</h1>
+        <p>Choose your login portal to access democracy accountability platform</p>
+      </div>
+      
+      <div class="portal-options">
+        <!-- General Public Portal -->
+        <div class="portal-card public-portal">
+          <div class="portal-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h2>General Public</h2>
+          <p>Citizens login to report issues, track manifestos, and monitor political accountability</p>
+          <ul class="portal-features">
+            <li><i class="fas fa-check"></i> Report civic issues</li>
+            <li><i class="fas fa-check"></i> Track politician promises</li>
+            <li><i class="fas fa-check"></i> View transparency scores</li>
+            <li><i class="fas fa-check"></i> Access public data</li>
+          </ul>
+          <a href="public-login.html" class="portal-btn public-btn">
+            <i class="fas fa-sign-in-alt"></i>
+            Citizen Login
+          </a>
+          <div class="portal-signup">
+            <span>New citizen? </span>
+            <a href="public-signup.html">Create Account</a>
+          </div>
+        </div>
+
+        <!-- Politicians Portal -->
+        <div class="portal-card politician-portal">
+          <div class="portal-icon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h2>Politicians & Officials</h2>
+          <p>Elected representatives and officials login to manage profiles and respond to citizen concerns</p>
+          <ul class="portal-features">
+            <li><i class="fas fa-check"></i> Manage public profile</li>
+            <li><i class="fas fa-check"></i> Respond to citizen issues</li>
+            <li><i class="fas fa-check"></i> Update promise status</li>
+            <li><i class="fas fa-check"></i> View constituency data</li>
+          </ul>
+          <a href="politician-login.html" class="portal-btn politician-btn">
+            <i class="fas fa-shield-alt"></i>
+            Official Login
+          </a>
+          <div class="portal-signup">
+            <span>Need access? </span>
+            <a href="politician-request.html">Request Access</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div class="portal-info">
+        <div class="info-section">
+          <h3><i class="fas fa-shield-check"></i> Secure & Verified</h3>
+          <p>All accounts are verified and secured with industry-standard encryption</p>
+        </div>
+        <div class="info-section">
+          <h3><i class="fas fa-eye"></i> Transparent</h3>
+          <p>Every action and data point is publicly visible for complete transparency</p>
+        </div>
+        <div class="info-section">
+          <h3><i class="fas fa-mobile-alt"></i> Accessible</h3>
+          <p>Access from any device - desktop, tablet, or mobile phone</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>जनदर्पण JanDarpan</h3>
+          <p>Making democracy transparent, measurable, and citizen-driven across India.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="map.html">Interactive Map</a></li>
+            <li><a href="manifestos.html">Manifestos</a></li>
+            <li><a href="politicians.html">Politicians</a></li>
+            <li><a href="issues.html">Report Issues</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 JanDarpan. All rights reserved. | Made with ❤️ for Indian Democracy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

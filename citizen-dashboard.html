@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>जनदर्पण</h2>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+                <li><a href="citizen-dashboard.html" class="nav-link active">My Dashboard</a></li>
+                <li><a href="#" class="nav-link logout-btn" onclick="logout()">Logout</a></li>
+            </ul>
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span class="user-name" id="userName">Loading...</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h1 id="profileName">Demo Citizen</h1>
+                            <p class="profile-email" id="profileEmail">demo@citizen.com</p>
+                            <div class="profile-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="profileState">Telangana</span> • 
+                                <span id="profileConstituency">Hyderabad East</span>
+                            </div>
+                            <div class="profile-join-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>Member since October 2024</span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-secondary" onclick="editProfile()">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="quick-stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalReports">12</h3>
+                            <p>Issues Reported</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="resolvedReports">8</h3>
+                            <p>Issues Resolved</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingReports">4</h3>
+                            <p>Issues Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="citizenScore">85%</h3>
+                            <p>Engagement Score</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content -->
+        <section class="dashboard-main">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- My Reports Section -->
+                    <div class="dashboard-section reports-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-clipboard-list"></i> My Reports</h2>
+                            <button class="btn-primary" onclick="createNewReport()">
+                                <i class="fas fa-plus"></i> New Report
+                            </button>
+                        </div>
+                        <div class="reports-list" id="reportsList">
+                            <!-- Reports will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Constituency Info Section -->
+                    <div class="dashboard-section constituency-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-landmark"></i> My Constituency</h2>
+                            <button class="btn-secondary" onclick="viewFullConstituency()">
+                                <i class="fas fa-external-link-alt"></i> View Details
+                            </button>
+                        </div>
+                        <div class="constituency-info" id="constituencyInfo">
+                            <!-- Constituency info will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                        <select class="filter-select" id="activityFilter">
+                            <option value="all">All Activities</option>
+                            <option value="reports">My Reports</option>
+                            <option value="updates">Government Updates</option>
+                            <option value="schemes">Scheme Applications</option>
+                        </select>
+                    </div>
+                    <div class="activity-timeline" id="activityTimeline">
+                        <!-- Activity timeline will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Profile</h3>
+                <button class="modal-close" onclick="closeEditProfile()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label for="editName">Full Name</label>
+                        <input type="text" id="editName" name="name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email Address</label>
+                        <input type="email" id="editEmail" name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editState">State</label>
+                            <select id="editState" name="state">
+                                <option value="">Select State</option>
+                                <option value="telangana">Telangana</option>
+                                <option value="andhra-pradesh">Andhra Pradesh</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <!-- Add more states -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editConstituency">Constituency</label>
+                            <input type="text" id="editConstituency" name="constituency" placeholder="Enter constituency">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeEditProfile()">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>जनदर्पण</h3>
+                <p>Empowering citizens through transparent governance and accountability.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="help.html">Help Center</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 JanDarpan. All rights reserved. | Developed for transparent governance</p>
+        </div>
+    </footer>
+
+    <script src="js/citizen-dashboard.js"></script>
+    <script>
+        // Initialize dashboard on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCitizenDashboard();
+        });
+    </script>
+</body>
+</html>

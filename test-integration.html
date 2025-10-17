@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration Test - JanDarpan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f4f4f4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #ff6b35;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .test-button:hover {
+            background: #e55a2b;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🇮🇳 JanDarpan Integration Test</h1>
+    
+    <div class="info">
+        <h3>Testing Issue Reporting → Dashboard Integration</h3>
+        <p>This test page helps verify that the issue reporting system properly integrates with the citizen dashboard.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Citizen Portal Test Flow:</h2>
+        <ol>
+            <li><strong>Citizen Login</strong> - Go to public login and create a test account</li>
+            <li><strong>Report Issue</strong> - Submit a new issue report</li>
+            <li><strong>View Dashboard</strong> - Check if the report appears in your dashboard</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Politician Portal Test Flow:</h2>
+        <ol>
+            <li><strong>Politician Login</strong> - Use test credentials (ID: MLA001TG, Email: test.politician@telangana.gov.in)</li>
+            <li><strong>View Reports</strong> - See citizen reports from your constituency</li>
+            <li><strong>Respond to Issues</strong> - Reply to citizen complaints</li>
+            <li><strong>Check Performance</strong> - Monitor your accountability metrics</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Citizen Portal Links:</h2>
+        <a href="public-login.html" class="test-button">🔐 Citizen Login</a>
+        <a href="issues.html" class="test-button">📝 Report Issue</a>
+        <a href="citizen-dashboard.html" class="test-button">📊 Citizen Dashboard</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Politician Portal Links:</h2>
+        <a href="politician-login.html" class="test-button">🏛️ Politician Login</a>
+        <a href="politician-dashboard.html" class="test-button">📈 Politician Dashboard</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Common Links:</h2>
+        <a href="login.html" class="test-button">🚪 Main Login Portal</a>
+        <a href="index.html" class="test-button">🏠 Homepage</a>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Data Storage:</h2>
+        <button class="test-button" onclick="showLocalStorageData()">📋 Check Local Storage</button>
+        <button class="test-button" onclick="clearTestData()">🗑️ Clear Test Data</button>
+        <div id="storageData" style="margin-top: 15px;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Citizen Portal Features:</h2>
+        <ul>
+            <li class="success">✓ Issue reporting form collects all required data</li>
+            <li class="success">✓ Form generates unique tracking ID</li>
+            <li class="success">✓ Report data saved to localStorage</li>
+            <li class="success">✓ Automatic redirect to citizen dashboard after submission</li>
+            <li class="success">✓ Dashboard displays submitted reports alongside existing ones</li>
+            <li class="success">✓ Navigation header shows login status and profile</li>
+            <li class="success">✓ User session maintained across pages</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Politician Portal Features:</h2>
+        <ul>
+            <li class="success">✓ Politician authentication with ID verification</li>
+            <li class="success">✓ Constituency-based report filtering</li>
+            <li class="success">✓ Performance metrics and analytics</li>
+            <li class="success">✓ Response management system</li>
+            <li class="success">✓ Different navigation and dashboard interface</li>
+            <li class="success">✓ Report status management capabilities</li>
+            <li class="success">✓ Monthly performance tracking charts</li>
+        </ul>
+    </div>
+
+    <script>
+        function showLocalStorageData() {
+            const userData = {
+                userName: localStorage.getItem('userName'),
+                userEmail: localStorage.getItem('userEmail'),
+                userState: localStorage.getItem('userState'),
+                userConstituency: localStorage.getItem('userConstituency'),
+                userType: localStorage.getItem('userType')
+            };
+
+            const userReports = JSON.parse(localStorage.getItem('userReports') || '[]');
+
+            const dataDiv = document.getElementById('storageData');
+            dataDiv.innerHTML = `
+                <h4>User Session Data:</h4>
+                <pre>${JSON.stringify(userData, null, 2)}</pre>
+                
+                <h4>User Reports (${userReports.length} total):</h4>
+                <pre>${JSON.stringify(userReports, null, 2)}</pre>
+            `;
+        }
+
+        function clearTestData() {
+            if (confirm('Are you sure you want to clear all test data? This will log you out.')) {
+                localStorage.clear();
+                document.getElementById('storageData').innerHTML = '<p style="color: orange;">✓ All test data cleared!</p>';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

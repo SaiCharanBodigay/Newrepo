@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive India Map - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-university"></i>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link active">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Map Header -->
+    <section class="map-header">
+        <div class="container">
+            <h1>Interactive Democracy Map</h1>
+            <p>Explore political accountability across Indian states and constituencies</p>
+            
+            <!-- Map Controls -->
+            <div class="map-controls">
+                <div class="control-group">
+                    <label for="mapView">View:</label>
+                    <select id="mapView" class="control-select">
+                        <option value="states">States</option>
+                        <option value="constituencies">Constituencies</option>
+                        <option value="districts">Districts</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="dataMetric">Data Metric:</label>
+                    <select id="dataMetric" class="control-select">
+                        <option value="accountability">Accountability Score</option>
+                        <option value="manifesto">Manifesto Fulfillment</option>
+                        <option value="transparency">Transparency Index</option>
+                        <option value="development">Development Progress</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i> Search Location
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Container -->
+    <section class="map-section">
+        <div class="map-container">
+            <!-- Left Panel -->
+            <div class="map-sidebar">
+                <div class="legend-panel">
+                    <h3>Legend</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #27ae60;"></div>
+                            <span>Excellent (80-100%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #f39c12;"></div>
+                            <span>Good (60-79%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #e67e22;"></div>
+                            <span>Average (40-59%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #e74c3c;"></div>
+                            <span>Poor (Below 40%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <h3>Quick Stats</h3>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-landmark"></i>
+                            <div>
+                                <span class="stat-number">28</span>
+                                <span class="stat-label">States</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="stat-number">543</span>
+                                <span class="stat-label">Constituencies</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <span class="stat-number">4,000+</span>
+                                <span class="stat-label">Politicians Tracked</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Map -->
+            <div class="map-main">
+                <div class="map-wrapper">
+                    <svg id="indiaMap" viewBox="0 0 1000 800" class="india-map-interactive">
+                        <!-- States will be dynamically loaded -->
+                        <!-- Maharashtra -->
+                        <path d="M 400 350 L 500 320 L 520 400 L 450 450 L 380 420 Z" 
+                              class="state-path" 
+                              data-state="Maharashtra" 
+                              data-score="78" 
+                              fill="#f39c12" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Karnataka -->
+                        <path d="M 350 450 L 450 450 L 470 520 L 380 550 L 320 500 Z" 
+                              class="state-path" 
+                              data-state="Karnataka" 
+                              data-score="82" 
+                              fill="#27ae60" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Tamil Nadu -->
+                        <path d="M 380 550 L 470 520 L 480 600 L 400 620 L 350 580 Z" 
+                              class="state-path" 
+                              data-state="Tamil Nadu" 
+                              data-score="85" 
+                              fill="#27ae60" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Gujarat -->
+                        <path d="M 250 300 L 350 280 L 380 350 L 300 380 L 220 340 Z" 
+                              class="state-path" 
+                              data-state="Gujarat" 
+                              data-score="75" 
+                              fill="#f39c12" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Rajasthan -->
+                        <path d="M 220 200 L 350 180 L 380 280 L 250 300 L 180 250 Z" 
+                              class="state-path" 
+                              data-state="Rajasthan" 
+                              data-score="65" 
+                              fill="#f39c12" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Uttar Pradesh -->
+                        <path d="M 380 180 L 520 160 L 550 240 L 450 260 L 350 240 Z" 
+                              class="state-path" 
+                              data-state="Uttar Pradesh" 
+                              data-score="45" 
+                              fill="#e67e22" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- West Bengal -->
+                        <path d="M 600 250 L 680 240 L 700 320 L 650 350 L 580 330 Z" 
+                              class="state-path" 
+                              data-state="West Bengal" 
+                              data-score="70" 
+                              fill="#f39c12" 
+                              stroke="#2c3e50" 
+                              stroke-width="1"/>
+                        
+                        <!-- Delhi -->
+                        <circle cx="450" cy="200" r="8" 
+                                class="state-path capital-city" 
+                                data-state="Delhi" 
+                                data-score="88" 
+                                fill="#27ae60" 
+                                stroke="#2c3e50" 
+                                stroke-width="2"/>
+                        
+                        <!-- Add more states as needed -->
+                    </svg>
+                    
+                    <!-- Map Overlay for selected state info -->
+                    <div id="stateTooltip" class="state-tooltip">
+                        <h4 id="tooltipTitle">State Name</h4>
+                        <div class="tooltip-content">
+                            <div class="tooltip-metric">
+                                <span class="metric-label">Accountability Score:</span>
+                                <span class="metric-value" id="tooltipScore">0%</span>
+                            </div>
+                            <div class="tooltip-metric">
+                                <span class="metric-label">Population:</span>
+                                <span class="metric-value" id="tooltipPopulation">-</span>
+                            </div>
+                            <div class="tooltip-metric">
+                                <span class="metric-label">MLAs:</span>
+                                <span class="metric-value" id="tooltipMLAs">-</span>
+                            </div>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="map-details">
+                <div class="details-header">
+                    <h3>State Details</h3>
+                    <div class="details-tabs">
+                        <button class="tab-btn active" data-tab="overview">Overview</button>
+                        <button class="tab-btn" data-tab="politicians">Politicians</button>
+                        <button class="tab-btn" data-tab="issues">Issues</button>
+                    </div>
+                </div>
+
+                <div class="tab-content active" id="overview">
+                    <div class="state-overview">
+                        <h4>Select a state to view details</h4>
+                        <p>Click on any state in the map to see detailed accountability metrics, political representatives, and citizen issues.</p>
+                        
+                        <div class="top-performers">
+                            <h5>Top Performing States</h5>
+                            <div class="performer-list">
+                                <div class="performer-item">
+                                    <span class="rank">1</span>
+                                    <span class="state-name">Delhi</span>
+                                    <span class="score">88%</span>
+                                </div>
+                                <div class="performer-item">
+                                    <span class="rank">2</span>
+                                    <span class="state-name">Tamil Nadu</span>
+                                    <span class="score">85%</span>
+                                </div>
+                                <div class="performer-item">
+                                    <span class="rank">3</span>
+                                    <span class="state-name">Karnataka</span>
+                                    <span class="score">82%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="politicians">
+                    <div class="politicians-list">
+                        <h4>Political Representatives</h4>
+                        <p>Select a state to view representatives</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="issues">
+                    <div class="issues-list">
+                        <h4>Citizen Issues</h4>
+                        <p>Select a state to view reported issues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Search Location</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="search-box">
+                    <input type="text" id="locationSearch" placeholder="Enter state, district, or constituency name...">
+                    <button id="searchLocation"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JanDarpan</h3>
+                    <p>Holding democracy to its promises through transparency and accountability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="map.html">Interactive Map</a></li>
+                        <li><a href="manifestos.html">Manifestos</a></li>
+                        <li><a href="politicians.html">Politicians</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Data Sources</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JanDarpan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>

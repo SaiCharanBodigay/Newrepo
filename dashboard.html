@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparency Dashboard - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-university"></i>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+                <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Transparency Dashboard</h1>
+                    <p>Comprehensive insights into democracy accountability and governance performance</p>
+                </div>
+                <div class="header-controls">
+                    <select id="timeRange" class="time-filter">
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d" selected>Last 30 Days</option>
+                        <option value="90d">Last 3 Months</option>
+                        <option value="1y">Last Year</option>
+                        <option value="all">All Time</option>
+                    </select>
+                    <button id="exportReport" class="export-btn">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Overview -->
+    <section class="key-metrics">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card primary">
+                    <div class="metric-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Overall Accountability Score</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="73">0</span>
+                            <span class="unit">/100</span>
+                        </div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +5.2% from last month
+                        </div>
+                    </div>
+                    <div class="metric-chart">
+                        <canvas id="overallScoreChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Promises Fulfilled</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="68">0</span>
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +2.8% from last month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Active Politicians</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="4247">0</span>
+                        </div>
+                        <div class="metric-change neutral">
+                            <i class="fas fa-minus"></i> No change
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Issues Reported</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="16303">0</span>
+                        </div>
+                        <div class="metric-change negative">
+                            <i class="fas fa-arrow-down"></i> -12% from last month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Issues Resolved</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="12847">0</span>
+                        </div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +18% from last month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>Citizen Satisfaction</h3>
+                        <div class="metric-value">
+                            <span class="number" data-target="84">0</span>
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +6.1% from last month
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Analytics -->
+    <section class="performance-analytics">
+        <div class="container">
+            <h2>Performance Analytics</h2>
+            <div class="analytics-grid">
+                <div class="chart-container large">
+                    <div class="chart-header">
+                        <h3>Accountability Trends</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-chart="overall">Overall</button>
+                            <button class="chart-btn" data-chart="by-state">By State</button>
+                            <button class="chart-btn" data-chart="by-party">By Party</button>
+                        </div>
+                    </div>
+                    <canvas id="accountabilityTrendsChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Promise Fulfillment by Category</h3>
+                    </div>
+                    <canvas id="promiseFulfillmentChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>State Performance Rankings</h3>
+                    </div>
+                    <canvas id="stateRankingsChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Issue Resolution Rate</h3>
+                    </div>
+                    <canvas id="issueResolutionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regional Insights -->
+    <section class="regional-insights">
+        <div class="container">
+            <h2>Regional Insights</h2>
+            <div class="insights-container">
+                <div class="insights-map">
+                    <h3>India Performance Heatmap</h3>
+                    <div class="map-container">
+                        <svg viewBox="0 0 1000 800" class="performance-heatmap">
+                            <!-- Simplified India map with performance colors -->
+                            <path d="M 400 350 L 500 320 L 520 400 L 450 450 L 380 420 Z" 
+                                  class="state-region excellent" 
+                                  data-state="Maharashtra" 
+                                  data-score="78"/>
+                            <path d="M 350 450 L 450 450 L 470 520 L 380 550 L 320 500 Z" 
+                                  class="state-region excellent" 
+                                  data-state="Karnataka" 
+                                  data-score="82"/>
+                            <path d="M 380 550 L 470 520 L 480 600 L 400 620 L 350 580 Z" 
+                                  class="state-region excellent" 
+                                  data-state="Tamil Nadu" 
+                                  data-score="85"/>
+                            <path d="M 250 300 L 350 280 L 380 350 L 300 380 L 220 340 Z" 
+                                  class="state-region good" 
+                                  data-state="Gujarat" 
+                                  data-score="75"/>
+                            <path d="M 220 200 L 350 180 L 380 280 L 250 300 L 180 250 Z" 
+                                  class="state-region good" 
+                                  data-state="Rajasthan" 
+                                  data-score="65"/>
+                            <path d="M 380 180 L 520 160 L 550 240 L 450 260 L 350 240 Z" 
+                                  class="state-region average" 
+                                  data-state="Uttar Pradesh" 
+                                  data-score="45"/>
+                            <circle cx="450" cy="200" r="8" 
+                                    class="state-region excellent" 
+                                    data-state="Delhi" 
+                                    data-score="88"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="insights-details">
+                    <div class="performance-legend">
+                        <h4>Performance Scale</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color excellent"></div>
+                                <span>Excellent (80-100)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color good"></div>
+                                <span>Good (60-79)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color average"></div>
+                                <span>Average (40-59)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color poor"></div>
+                                <span>Poor (0-39)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="top-performers">
+                        <h4>Top Performing States</h4>
+                        <div class="performer-list">
+                            <div class="performer-item">
+                                <span class="rank">1</span>
+                                <span class="state">Delhi</span>
+                                <span class="score">88</span>
+                            </div>
+                            <div class="performer-item">
+                                <span class="rank">2</span>
+                                <span class="state">Tamil Nadu</span>
+                                <span class="score">85</span>
+                            </div>
+                            <div class="performer-item">
+                                <span class="rank">3</span>
+                                <span class="state">Karnataka</span>
+                                <span class="score">82</span>
+                            </div>
+                            <div class="performer-item">
+                                <span class="rank">4</span>
+                                <span class="state">Maharashtra</span>
+                                <span class="score">78</span>
+                            </div>
+                            <div class="performer-item">
+                                <span class="rank">5</span>
+                                <span class="state">Gujarat</span>
+                                <span class="score">75</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="improvement-needed">
+                        <h4>Areas Needing Improvement</h4>
+                        <div class="improvement-list">
+                            <div class="improvement-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>
+                                    <strong>Uttar Pradesh</strong>
+                                    <p>Focus on infrastructure and governance</p>
+                                </div>
+                            </div>
+                            <div class="improvement-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>
+                                    <strong>Bihar</strong>
+                                    <p>Enhance education and healthcare systems</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Activity Feed -->
+    <section class="activity-feed">
+        <div class="container">
+            <div class="feed-container">
+                <div class="feed-main">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="activityFeed">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                    <button id="loadMoreActivity" class="load-more-btn">
+                        <i class="fas fa-plus"></i> Load More Activities
+                    </button>
+                </div>
+                
+                <div class="feed-sidebar">
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <a href="issues.html" class="action-btn">
+                                <i class="fas fa-plus-circle"></i>
+                                Report Issue
+                            </a>
+                            <a href="politicians.html" class="action-btn">
+                                <i class="fas fa-search"></i>
+                                Find Politician
+                            </a>
+                            <a href="manifestos.html" class="action-btn">
+                                <i class="fas fa-file-alt"></i>
+                                Track Promises
+                            </a>
+                            <a href="map.html" class="action-btn">
+                                <i class="fas fa-map"></i>
+                                Explore Map
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="alerts-panel">
+                        <h3>System Alerts</h3>
+                        <div class="alert-item info">
+                            <i class="fas fa-info-circle"></i>
+                            <p>New manifesto tracking data available for Q4 2024</p>
+                        </div>
+                        <div class="alert-item warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>High volume of issues reported in Maharashtra</p>
+                        </div>
+                        <div class="alert-item success">
+                            <i class="fas fa-check-circle"></i>
+                            <p>95% issue resolution rate achieved in Delhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Sources -->
+    <section class="data-sources">
+        <div class="container">
+            <h2>Data Sources & Methodology</h2>
+            <div class="sources-grid">
+                <div class="source-card">
+                    <div class="source-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Government APIs</h3>
+                    <p>Real-time data from official government portals and databases</p>
+                    <div class="source-status verified">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+                
+                <div class="source-card">
+                    <div class="source-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Media Reports</h3>
+                    <p>Aggregated news and media coverage from trusted sources</p>
+                    <div class="source-status verified">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+                
+                <div class="source-card">
+                    <div class="source-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Citizen Reports</h3>
+                    <p>Direct feedback and issue reports from citizens</p>
+                    <div class="source-status community">
+                        <i class="fas fa-users"></i> Community
+                    </div>
+                </div>
+                
+                <div class="source-card">
+                    <div class="source-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Third-party Analytics</h3>
+                    <p>Independent research and analysis from credible organizations</p>
+                    <div class="source-status verified">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JanDarpan</h3>
+                    <p>Holding democracy to its promises through transparency and accountability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Dashboard</h4>
+                    <ul>
+                        <li><a href="#key-metrics">Key Metrics</a></li>
+                        <li><a href="#analytics">Performance Analytics</a></li>
+                        <li><a href="#regional-insights">Regional Insights</a></li>
+                        <li><a href="#activity-feed">Recent Activity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Data Sources</a></li>
+                        <li><a href="#">Methodology</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JanDarpan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

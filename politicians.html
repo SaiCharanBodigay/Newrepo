@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicians Dashboard - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/politicians.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-university"></i>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link active">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link">Report Issues</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Politicians Header -->
+    <section class="politicians-header">
+        <div class="container">
+            <h1>Politicians Accountability Dashboard</h1>
+            <p>Track performance, transparency, and accountability of elected representatives</p>
+            
+            <!-- Search and Filters -->
+            <div class="politicians-controls">
+                <div class="search-container">
+                    <input type="text" id="politicianSearch" placeholder="Search by name, constituency, or party...">
+                    <button id="searchPolitician">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-controls">
+                    <select id="stateFilter" class="filter-select">
+                        <option value="all">All States</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="uttar-pradesh">Uttar Pradesh</option>
+                        <option value="west-bengal">West Bengal</option>
+                    </select>
+                    
+                    <select id="positionFilter" class="filter-select">
+                        <option value="all">All Positions</option>
+                        <option value="chief-minister">Chief Minister</option>
+                        <option value="deputy-cm">Deputy CM</option>
+                        <option value="minister">Minister</option>
+                        <option value="mla">MLA</option>
+                        <option value="mp">MP</option>
+                    </select>
+                    
+                    <select id="partyFilter" class="filter-select">
+                        <option value="all">All Parties</option>
+                        <option value="bjp">BJP</option>
+                        <option value="congress">Congress</option>
+                        <option value="aap">AAP</option>
+                        <option value="tmc">TMC</option>
+                        <option value="dmk">DMK</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Performers -->
+    <section class="top-performers">
+        <div class="container">
+            <h2>Top Performing Politicians</h2>
+            <div class="performers-grid">
+                <div class="performer-card gold">
+                    <div class="rank-badge">1</div>
+                    <div class="politician-avatar">
+                        <img src="https://via.placeholder.com/80x80/FF9933/FFFFFF?text=AK" alt="Arvind Kejriwal">
+                    </div>
+                    <div class="politician-info">
+                        <h3>Arvind Kejriwal</h3>
+                        <p class="position">Chief Minister, Delhi</p>
+                        <p class="party">AAP</p>
+                    </div>
+                    <div class="performance-score">
+                        <div class="score-circle" data-score="92">
+                            <span class="score-value">92</span>
+                        </div>
+                        <span class="score-label">Accountability Score</span>
+                    </div>
+                </div>
+                
+                <div class="performer-card silver">
+                    <div class="rank-badge">2</div>
+                    <div class="politician-avatar">
+                        <img src="https://via.placeholder.com/80x80/138808/FFFFFF?text=MS" alt="M.K. Stalin">
+                    </div>
+                    <div class="politician-info">
+                        <h3>M.K. Stalin</h3>
+                        <p class="position">Chief Minister, Tamil Nadu</p>
+                        <p class="party">DMK</p>
+                    </div>
+                    <div class="performance-score">
+                        <div class="score-circle" data-score="88">
+                            <span class="score-value">88</span>
+                        </div>
+                        <span class="score-label">Accountability Score</span>
+                    </div>
+                </div>
+                
+                <div class="performer-card bronze">
+                    <div class="rank-badge">3</div>
+                    <div class="politician-avatar">
+                        <img src="https://via.placeholder.com/80x80/FF6B35/FFFFFF?text=SD" alt="Siddaramaiah">
+                    </div>
+                    <div class="politician-info">
+                        <h3>Siddaramaiah</h3>
+                        <p class="position">Chief Minister, Karnataka</p>
+                        <p class="party">Congress</p>
+                    </div>
+                    <div class="performance-score">
+                        <div class="score-circle" data-score="85">
+                            <span class="score-value">85</span>
+                        </div>
+                        <span class="score-label">Accountability Score</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Politicians Grid -->
+    <section class="politicians-grid-section">
+        <div class="container">
+            <div class="grid-header">
+                <h2>All Politicians</h2>
+                <div class="grid-controls">
+                    <select id="sortBy" class="sort-select">
+                        <option value="score-desc">Highest Score First</option>
+                        <option value="score-asc">Lowest Score First</option>
+                        <option value="name-asc">Name A-Z</option>
+                        <option value="name-desc">Name Z-A</option>
+                    </select>
+                    <button id="toggleView" class="view-toggle">
+                        <i class="fas fa-th"></i> Grid View
+                    </button>
+                </div>
+            </div>
+            
+            <div id="politiciansGrid" class="politicians-grid">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMore" class="load-more-btn">
+                    <i class="fas fa-plus"></i> Load More Politicians
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Politician Detail Modal -->
+    <div id="politicianModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Politician Details</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="politicianModalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Analytics -->
+    <section class="performance-analytics">
+        <div class="container">
+            <h2>Performance Analytics</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Score Distribution</h3>
+                    <canvas id="scoreDistributionChart"></canvas>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Party Performance</h3>
+                    <canvas id="partyPerformanceChart"></canvas>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>State Rankings</h3>
+                    <canvas id="stateRankingsChart"></canvas>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Performance Trends</h3>
+                    <canvas id="performanceTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Politicians Tracked</h3>
+                        <div class="stat-number" data-target="4247">0</div>
+                        <p>Across all states and positions</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Average Accountability Score</h3>
+                        <div class="stat-number" data-target="67">0</div>
+                        <p>Based on our AI analysis</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>High Performers (80+)</h3>
+                        <div class="stat-number" data-target="342">0</div>
+                        <p>Politicians with excellent scores</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Need Improvement (<40)</h3>
+                        <div class="stat-number" data-target="156">0</div>
+                        <p>Politicians requiring attention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JanDarpan</h3>
+                    <p>Holding democracy to its promises through transparency and accountability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Politicians Dashboard</h4>
+                    <ul>
+                        <li><a href="#top-performers">Top Performers</a></li>
+                        <li><a href="#politicians-grid">All Politicians</a></li>
+                        <li><a href="#analytics">Performance Analytics</a></li>
+                        <li><a href="#quick-stats">Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Scoring Methodology</a></li>
+                        <li><a href="#">Data Sources</a></li>
+                        <li><a href="#">Transparency Report</a></li>
+                        <li><a href="#">Contact Politicians</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JanDarpan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/politicians.js"></script>
+</body>
+</html>

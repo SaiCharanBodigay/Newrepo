@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issues - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/issues.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-university"></i>
+                <span>JanDarpan</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="map.html" class="nav-link">Interactive Map</a></li>
+                <li><a href="manifestos.html" class="nav-link">Manifestos</a></li>
+                <li><a href="politicians.html" class="nav-link">Politicians</a></li>
+                <li><a href="issues.html" class="nav-link active">Report Issues</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Issues Header -->
+    <section class="issues-header">
+        <div class="container">
+            <h1>Citizen Issue Reporting System</h1>
+            <p>Voice your concerns and track their resolution for better governance</p>
+        </div>
+    </section>
+
+    <!-- Issue Reporting Form -->
+    <section class="report-issue-section">
+        <div class="container">
+            <div class="report-container">
+                <div class="form-section">
+                    <div class="form-header">
+                        <h2><i class="fas fa-plus-circle"></i> Report New Issue</h2>
+                        <p>Help us make democracy more accountable by reporting issues in your area</p>
+                    </div>
+                    
+                    <form id="issueReportForm" class="issue-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="issueTitle">Issue Title *</label>
+                                <input type="text" id="issueTitle" name="title" required placeholder="Brief description of the issue">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issueCategory">Category *</label>
+                                <select id="issueCategory" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="infrastructure">Infrastructure</option>
+                                    <option value="water-supply">Water Supply</option>
+                                    <option value="electricity">Electricity</option>
+                                    <option value="sanitation">Sanitation</option>
+                                    <option value="transportation">Transportation</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="education">Education</option>
+                                    <option value="corruption">Corruption</option>
+                                    <option value="law-order">Law & Order</option>
+                                    <option value="environment">Environment</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issuePriority">Priority Level *</label>
+                                <select id="issuePriority" name="priority" required>
+                                    <option value="">Select Priority</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issueState">State *</label>
+                                <select id="issueState" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="maharashtra">Maharashtra</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="tamil-nadu">Tamil Nadu</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="rajasthan">Rajasthan</option>
+                                    <option value="uttar-pradesh">Uttar Pradesh</option>
+                                    <option value="west-bengal">West Bengal</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issueDistrict">District *</label>
+                                <input type="text" id="issueDistrict" name="district" required placeholder="Enter your district">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="issueArea">Area/Locality</label>
+                                <input type="text" id="issueArea" name="area" placeholder="Specific area or locality">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="issueDescription">Detailed Description *</label>
+                            <textarea id="issueDescription" name="description" required rows="6" placeholder="Provide detailed information about the issue, including when it started, how it affects you, and what you think should be done..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="issuePhotos">Upload Photos (Optional)</label>
+                            <div class="file-upload">
+                                <input type="file" id="issuePhotos" name="photos" multiple accept="image/*">
+                                <div class="upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload or drag and drop</p>
+                                    <small>Maximum 5 files, 10MB each</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reporterName">Your Name</label>
+                            <input type="text" id="reporterName" name="name" placeholder="Your full name (optional for anonymous reporting)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reporterContact">Contact Information</label>
+                            <input type="text" id="reporterContact" name="contact" placeholder="Phone number or email (for updates)">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="saveAsDraft" class="btn-secondary">
+                                <i class="fas fa-save"></i> Save as Draft
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i> Submit Issue
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-card">
+                        <h3><i class="fas fa-info-circle"></i> How It Works</h3>
+                        <ol>
+                            <li>Fill out the issue report form with detailed information</li>
+                            <li>Your issue is reviewed and assigned a tracking ID</li>
+                            <li>Relevant authorities are notified automatically</li>
+                            <li>Track progress and receive updates on resolution</li>
+                            <li>Rate the resolution quality once completed</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Privacy & Security</h3>
+                        <ul>
+                            <li>Anonymous reporting available</li>
+                            <li>Data encrypted and securely stored</li>
+                            <li>Only authorized officials access reports</li>
+                            <li>Your contact info never shared publicly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Response Times</h3>
+                        <div class="response-times">
+                            <div class="response-item">
+                                <span class="priority urgent">Urgent</span>
+                                <span class="time">24 hours</span>
+                            </div>
+                            <div class="response-item">
+                                <span class="priority high">High</span>
+                                <span class="time">72 hours</span>
+                            </div>
+                            <div class="response-item">
+                                <span class="priority medium">Medium</span>
+                                <span class="time">1 week</span>
+                            </div>
+                            <div class="response-item">
+                                <span class="priority low">Low</span>
+                                <span class="time">2 weeks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track Issues -->
+    <section class="track-issues-section">
+        <div class="container">
+            <div class="track-header">
+                <h2><i class="fas fa-search"></i> Track Your Issues</h2>
+                <p>Enter your tracking ID or search by details to check status</p>
+            </div>
+            
+            <div class="track-container">
+                <div class="track-form">
+                    <div class="track-input-group">
+                        <input type="text" id="trackingId" placeholder="Enter Tracking ID (e.g., JD2024001234)">
+                        <button id="trackIssue" class="track-btn">
+                            <i class="fas fa-search"></i> Track
+                        </button>
+                    </div>
+                    
+                    <div class="track-alternative">
+                        <p>Don't have tracking ID? <a href="#" id="searchByDetails">Search by details</a></p>
+                    </div>
+                </div>
+                
+                <div id="trackingResults" class="tracking-results">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Issues -->
+    <section class="recent-issues-section">
+        <div class="container">
+            <div class="recent-header">
+                <h2>Recent Issues from Your Area</h2>
+                <div class="area-filter">
+                    <select id="areaFilter">
+                        <option value="all">All Areas</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="kolkata">Kolkata</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="issues-grid" id="recentIssuesGrid">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreIssues" class="load-more-btn">
+                    <i class="fas fa-plus"></i> Load More Issues
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Issue Statistics -->
+    <section class="issue-statistics">
+        <div class="container">
+            <h2>Issue Resolution Statistics</h2>
+            <div class="stats-dashboard">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon resolved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Resolved Issues</h3>
+                            <div class="stat-number" data-target="12847">0</div>
+                            <p class="stat-change positive">+12% this month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Issues</h3>
+                            <div class="stat-number" data-target="3456">0</div>
+                            <p class="stat-change negative">-8% this month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon avg-time">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Avg. Resolution Time</h3>
+                            <div class="stat-number" data-target="7">0</div>
+                            <p class="stat-unit">days</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon satisfaction">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Satisfaction Rate</h3>
+                            <div class="stat-number" data-target="84">0</div>
+                            <p class="stat-unit">%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Issues by Category</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h3>Resolution Trends</h3>
+                        <canvas id="trendsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h3><i class="fas fa-check-circle"></i> Issue Submitted Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Your issue has been submitted and assigned tracking ID:</p>
+                <div class="tracking-id-display">
+                    <span id="generatedTrackingId">JD2024001234</span>
+                    <button id="copyTrackingId" class="copy-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <p>You will receive updates on the provided contact information. You can also track the progress using the tracking ID above.</p>
+                <div class="modal-actions">
+                    <button id="trackNewIssue" class="btn-primary">Track This Issue</button>
+                    <button id="reportAnother" class="btn-secondary">Report Another Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JanDarpan</h3>
+                    <p>Holding democracy to its promises through transparency and accountability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Issue Reporting</h4>
+                    <ul>
+                        <li><a href="#report-issue">Report New Issue</a></li>
+                        <li><a href="#track-issues">Track Issues</a></li>
+                        <li><a href="#recent-issues">Recent Issues</a></li>
+                        <li><a href="#statistics">Statistics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Guidelines</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JanDarpan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/issues.js"></script>
+</body>
+</html>
