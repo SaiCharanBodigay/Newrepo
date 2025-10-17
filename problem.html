@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue - JanDarpan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .problem-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .problem-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .problem-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+        
+        select.form-control {
+            cursor: pointer;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="problem-container">
+        <div class="problem-form">
+            <div class="problem-header">
+                <div class="problem-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h1>Report a Problem</h1>
+                <p>Having trouble with JanDarpan? Let us know and we'll help you resolve it quickly.</p>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Thank you! Your problem report has been submitted successfully. Our support team will contact you soon.
+            </div>
+            
+            <form id="problemForm">
+                <div class="form-group">
+                    <label for="userType">
+                        <i class="fas fa-user"></i> I am a:
+                    </label>
+                    <select id="userType" name="userType" class="form-control" required>
+                        <option value="">Select your user type</option>
+                        <option value="citizen">Citizen</option>
+                        <option value="politician">Politician/Official</option>
+                        <option value="visitor">General Visitor</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="problemType">
+                        <i class="fas fa-bug"></i> Problem Type:
+                    </label>
+                    <select id="problemType" name="problemType" class="form-control" required>
+                        <option value="">Select problem type</option>
+                        <option value="login-citizen">Cannot Login - Citizen Account</option>
+                        <option value="login-politician">Cannot Login - Politician Account</option>
+                        <option value="signup">Cannot Create Account</option>
+                        <option value="forgot-password">Forgot Password</option>
+                        <option value="page-error">Page Not Loading</option>
+                        <option value="feature-not-working">Feature Not Working</option>
+                        <option value="data-issue">Data Display Issue</option>
+                        <option value="mobile-issue">Mobile App Issue</option>
+                        <option value="security">Security Concern</option>
+                        <option value="other">Other Technical Issue</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userName">
+                        <i class="fas fa-id-card"></i> Your Name:
+                    </label>
+                    <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userEmail">
+                        <i class="fas fa-envelope"></i> Email Address:
+                    </label>
+                    <input type="email" id="userEmail" name="userEmail" class="form-control" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userPhone">
+                        <i class="fas fa-phone"></i> Phone Number (Optional):
+                    </label>
+                    <input type="tel" id="userPhone" name="userPhone" class="form-control" placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="problemDescription">
+                        <i class="fas fa-comment-alt"></i> Describe Your Problem:
+                    </label>
+                    <textarea id="problemDescription" name="problemDescription" class="form-control" placeholder="Please provide detailed information about the issue you're experiencing. Include any error messages, when it occurred, and what you were trying to do." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="browserInfo">
+                        <i class="fas fa-globe"></i> Browser & Device (Optional):
+                    </label>
+                    <input type="text" id="browserInfo" name="browserInfo" class="form-control" placeholder="e.g., Chrome on Windows, Safari on iPhone">
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Problem Report
+                </button>
+            </form>
+            
+            <div class="back-link">
+                <a href="first.html">
+                    <i class="fas fa-arrow-left"></i> Back to Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('problemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                userType: document.getElementById('userType').value,
+                problemType: document.getElementById('problemType').value,
+                userName: document.getElementById('userName').value,
+                userEmail: document.getElementById('userEmail').value,
+                userPhone: document.getElementById('userPhone').value,
+                problemDescription: document.getElementById('problemDescription').value,
+                browserInfo: document.getElementById('browserInfo').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store in localStorage (in real app, this would send to server)
+            let problemReports = JSON.parse(localStorage.getItem('problemReports') || '[]');
+            problemReports.push(formData);
+            localStorage.setItem('problemReports', JSON.stringify(problemReports));
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('problemForm').style.display = 'none';
+            
+            // Scroll to top to show success message
+            document.querySelector('.problem-container').scrollTop = 0;
+            
+            console.log('Problem report submitted:', formData);
+        });
+        
+        // Auto-detect browser info
+        document.addEventListener('DOMContentLoaded', function() {
+            const browserInfo = navigator.userAgent;
+            const simplifiedInfo = `${navigator.appName} on ${navigator.platform}`;
+            document.getElementById('browserInfo').placeholder = `Auto-detected: ${simplifiedInfo}`;
+        });
+    </script>
+</body>
+</html>
